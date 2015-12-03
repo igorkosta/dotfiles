@@ -1,4 +1,7 @@
-# include .bashrc if it exists
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# include .fidor if it exists
 if [ -f $HOME/.fidor ]; then
     . $HOME/.fidor
 fi
@@ -10,6 +13,7 @@ export PATH="/usr/local/git/bin:/sw/bin:/usr/local/bin:/usr/local:/usr/local/sbi
 alias ack='ack --color-filename="red bold" --color-match="yellow bold" --color-lineno=white'
 
 alias be='bundle exec'
+alias g='git'
 
 #if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -39,6 +43,19 @@ rme (){
     find . -maxdepth 1 ! -name "$1" ! -name '.*' | xargs rm -rf
   fi
 }
+
+# start or stop mongodb
+function mongo() {
+  brew services "$@" mongodb
+}
+export -f mongo
+
+# start or stop elasticsearch
+function elastic() {
+  brew services "$@" elasticsearch
+}
+export -f elastic
+
 
 # pretty printed, colorful curl
 function jcurl() {
