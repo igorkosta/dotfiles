@@ -1,7 +1,0 @@
-'.source.yaml':
-  'editor':
-    'commentStart': '# '
-'.source.raml':
-  'editor':
-    'increaseIndentPattern': '^\\s*.*(:|-) ?(&\\w+)?(\\{[^}"\']*|\\([^)"\']*)?$'
-    'decreaseIndentPattern': '^\\s+\\}$'
