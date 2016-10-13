@@ -6,9 +6,14 @@ if [ -f $HOME/.fidor ]; then
     . $HOME/.fidor
 fi
 
+alias emacs="/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs -nw"
+
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="$PATH:/usr/local/bin"
 export PATH="/usr/local/git/bin:/sw/bin:/usr/local/bin:/usr/local:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 alias ack='ack --color-filename="red bold" --color-match="yellow bold" --color-lineno=white'
 
@@ -44,11 +49,18 @@ rme (){
   fi
 }
 
+md ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+export -f md
+
 # start or stop mongodb
-function mongo() {
+function mongodb() {
   brew services "$@" mongodb
 }
-export -f mongo
+export -f mongodb
 
 # start or stop elasticsearch
 function elastic() {
@@ -56,6 +68,21 @@ function elastic() {
 }
 export -f elastic
 
+# start or stop cassandra
+function cassandra() {
+  brew services "$@" cassandra
+}
+export -f cassandra
+
+# start or stop cassandra
+function rabbit() {
+  brew services "$@" rabbitmq
+  if [ "$@" = start ]
+  then
+    open http://localhost:15672/
+  fi
+}
+export -f rabbit
 
 # pretty printed, colorful curl
 function jcurl() {
@@ -111,20 +138,16 @@ ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name end
     spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Git branch in prompt.
-
 parse_git_branch() {
-
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PS1="\u@\h \W\[\033[31m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="️\u@\h \W\[\033[31m\]\$(parse_git_branch)\[\033[00m\] ☠️  $ "
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
