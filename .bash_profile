@@ -10,7 +10,8 @@ alias emacs="/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs -nw"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="$PATH:/usr/local/bin"
-export PATH="/usr/local/git/bin:/sw/bin:/usr/local/bin:/usr/local:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+export PATH="/usr/local/git/bin:/sw/bin:/usr/local/bin:/usr/local/Cellar:/usr/local:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
@@ -79,6 +80,7 @@ function rabbit() {
   brew services "$@" rabbitmq
   if [ "$@" = start ]
   then
+    # while ! nc -q 1 localhost 13000 </dev/null; do sleep 10; done
     open http://localhost:15672/
   fi
 }
@@ -147,7 +149,7 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export PS1="️\u@\h \W\[\033[31m\]\$(parse_git_branch)\[\033[00m\] ☠️  $ "
+export PS1="️\u@\h \W\[\033[31m\]\$(parse_git_branch)\[\033[00m\] ☠️  λ "
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
