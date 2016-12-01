@@ -6,9 +6,9 @@ if [ -f $HOME/.fidor ]; then
     . $HOME/.fidor
 fi
 
-alias emacs="/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs -nw"
-
-export JAVA_HOME=$(/usr/libexec/java_home)
+alias emacs='/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs -nw'
+alias gitx='open -a GitX .'
+# export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="$PATH:/usr/local/bin"
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 export PATH="/usr/local/git/bin:/sw/bin:/usr/local/bin:/usr/local/Cellar:/usr/local:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
