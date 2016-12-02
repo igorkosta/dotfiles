@@ -1,0 +1,31 @@
+[color]
+	ui = auto
+[alias]
+  co = checkout
+  #ci = commit
+  st = status
+  s = status
+  pl = pull --rebase
+  #br = branch
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  #type = cat-file -t
+  #dump = cat-file -p
+  cb = checkout -b
+  files = show --name-only --oneline
+  update = add --update
+  sho = show --no-prefix
+  lol = log --oneline --graph --decorate
+  l = log --oneline --graph --decorate  -32
+  g = log --graph --decorate
+  d = diff --no-prefix
+  a = add
+  r = rebase -v
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
+[push]
+  default = current
+[user]
+	name = Igor Kostyuchenok
+	email = kostyuchenok@fidor.de
+[credential]
+	helper = osxkeychain
