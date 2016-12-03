@@ -26,6 +26,6 @@
   default = current
 [user]
 	name = Igor Kostyuchenok
-	email = kostyuchenok@fidor.de
+	email = igor@bankino.io
 [credential]
 	helper = osxkeychain

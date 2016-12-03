@@ -15,20 +15,17 @@ Plugin 'VundleVim/Vundle.vim'
 " " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/syntastic'
+" Prefer local eslint
+" Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " " To ignore plugin indent changes, instead use:
 " "filetype plugin on
-
-" pathogen
-" execute pathogen#infect()
-"filetype plugin indent on
 
 " CtrlP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -58,6 +55,14 @@ set textwidth=79
 set formatoptions=qrn1
 " set colorcolumn=85
 
+let g:syntastic_javascript_checkers = ['eslint'] "Use eslint for syntax checking
+let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+
+" Point syntastic checker at locally installed `eslint` if it exists.
+" if executable('/node_modules/.bin/eslint')
+"    let b:syntastic_javascript_eslint_exec = '/node_modules/.bin/eslint'
+"endif
+
 nnoremap ; :
 
 " use 'jj' instead of <ESC>
@@ -69,4 +74,4 @@ nnoremap <leader>a :Ack
 nnoremap <leader>p :CtrlP
 
 autocmd BufNewFile,BufRead *.json set ft=javascript
-
+autocmd BufWritePre * :%s/\s\+$//e
