@@ -18,8 +18,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/syntastic'
-" Prefer local eslint
-" Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,6 +53,8 @@ set textwidth=79
 set formatoptions=qrn1
 " set colorcolumn=85
 
+" In order for local `eslint` to work you have to install `eslint` globally
+" as well `sudo npm eslint -g` - otherwise it won't work
 let g:syntastic_javascript_checkers = ['eslint'] "Use eslint for syntax checking
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
